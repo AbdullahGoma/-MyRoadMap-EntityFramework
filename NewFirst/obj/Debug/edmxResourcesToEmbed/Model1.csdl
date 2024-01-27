@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SecondModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Dnumber" />
+    </Key>
+    <Property Name="Dnumber" Type="Int32" Nullable="false" />
+    <Property Name="Dname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MGRSSN" Type="Int32" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Departmen__MGRSS__3E52440B" FromRole="Department" ToRole="Employee" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Dno__3D5E1FD2" FromRole="Department" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="SSN" />
+    </Key>
+    <Property Name="SSN" Type="Int32" Nullable="false" />
+    <Property Name="Fname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Lname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BDATE" Type="DateTime" Precision="0" />
+    <Property Name="Address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Salary" Type="Double" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="Superssn" Type="Int32" Nullable="false" />
+    <Property Name="Dno" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Departments" Relationship="Self.FK__Departmen__MGRSS__3E52440B" FromRole="Employee" ToRole="Department" />
+    <NavigationProperty Name="Department" Relationship="Self.FK__Employee__Dno__3D5E1FD2" FromRole="Employee" ToRole="Department" />
+    <NavigationProperty Name="Employee1" Relationship="Self.FK__Employee__Supers__3C69FB99" FromRole="Employee" ToRole="Employee1" />
+    <NavigationProperty Name="Employee2" Relationship="Self.FK__Employee__Supers__3C69FB99" FromRole="Employee1" ToRole="Employee" />
+  </EntityType>
+  <Association Name="FK__Departmen__MGRSS__3E52440B">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="SSN" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="MGRSSN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee__Dno__3D5E1FD2">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Dnumber" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Dno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee__Supers__3C69FB99">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Employee1" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="SSN" />
+      </Principal>
+      <Dependent Role="Employee1">
+        <PropertyRef Name="Superssn" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SecondEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <AssociationSet Name="FK__Departmen__MGRSS__3E52440B" Association="Self.FK__Departmen__MGRSS__3E52440B">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Department" EntitySet="Departments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee__Dno__3D5E1FD2" Association="Self.FK__Employee__Dno__3D5E1FD2">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee__Supers__3C69FB99" Association="Self.FK__Employee__Supers__3C69FB99">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Employee1" EntitySet="Employees" />
+    </AssociationSet>
+    <FunctionImport Name="procGetDepartments" ReturnType="Collection(SecondModel.procGetDepartments_Result)" />
+    <FunctionImport Name="procGetEmployees" ReturnType="Collection(SecondModel.procGetEmployees_Result)">
+      <Parameter Name="salary" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="procGetDepartments_Result">
+    <Property Type="Int32" Name="Dnumber" Nullable="false" />
+    <Property Type="String" Name="Dname" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="MGRSSN" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="procGetEmployees_Result">
+    <Property Type="Int32" Name="SSN" Nullable="false" />
+    <Property Type="String" Name="Fname" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Lname" Nullable="false" MaxLength="30" />
+    <Property Type="DateTime" Name="BDATE" Nullable="true" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="Gender" Nullable="false" MaxLength="1" />
+    <Property Type="Double" Name="Salary" Nullable="false" />
+    <Property Type="Int32" Name="Superssn" Nullable="false" />
+    <Property Type="Int32" Name="Dno" Nullable="false" />
+  </ComplexType>
+</Schema>

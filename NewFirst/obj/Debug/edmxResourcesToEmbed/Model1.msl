@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SecondModelStoreContainer" CdmEntityContainer="SecondEntities">
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="SecondModel.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="Dnumber" ColumnName="Dnumber" />
+          <ScalarProperty Name="Dname" ColumnName="Dname" />
+          <ScalarProperty Name="MGRSSN" ColumnName="MGRSSN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="SecondModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="SSN" ColumnName="SSN" />
+          <ScalarProperty Name="Fname" ColumnName="Fname" />
+          <ScalarProperty Name="Lname" ColumnName="Lname" />
+          <ScalarProperty Name="BDATE" ColumnName="BDATE" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="Superssn" ColumnName="Superssn" />
+          <ScalarProperty Name="Dno" ColumnName="Dno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="procGetDepartments" FunctionName="SecondModel.Store.procGetDepartments">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SecondModel.procGetDepartments_Result">
+          <ScalarProperty Name="Dnumber" ColumnName="Dnumber" />
+          <ScalarProperty Name="Dname" ColumnName="Dname" />
+          <ScalarProperty Name="MGRSSN" ColumnName="MGRSSN" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="procGetEmployees" FunctionName="SecondModel.Store.procGetEmployees">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SecondModel.procGetEmployees_Result">
+          <ScalarProperty Name="SSN" ColumnName="SSN" />
+          <ScalarProperty Name="Fname" ColumnName="Fname" />
+          <ScalarProperty Name="Lname" ColumnName="Lname" />
+          <ScalarProperty Name="BDATE" ColumnName="BDATE" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="Superssn" ColumnName="Superssn" />
+          <ScalarProperty Name="Dno" ColumnName="Dno" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

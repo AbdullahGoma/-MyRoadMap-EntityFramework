@@ -1,0 +1,12 @@
+F:\ITI-Course\EF\NewFirst\bin\Debug\NewFirst.exe.config
+F:\ITI-Course\EF\NewFirst\bin\Debug\NewFirst.exe
+F:\ITI-Course\EF\NewFirst\bin\Debug\NewFirst.pdb
+F:\ITI-Course\EF\NewFirst\bin\Debug\EntityFramework.dll
+F:\ITI-Course\EF\NewFirst\bin\Debug\EntityFramework.SqlServer.dll
+F:\ITI-Course\EF\NewFirst\bin\Debug\EntityFramework.xml
+F:\ITI-Course\EF\NewFirst\bin\Debug\EntityFramework.SqlServer.xml
+F:\ITI-Course\EF\NewFirst\obj\Debug\NewFirst.csproj.AssemblyReference.cache
+F:\ITI-Course\EF\NewFirst\obj\Debug\NewFirst.csproj.CoreCompileInputs.cache
+F:\ITI-Course\EF\NewFirst\obj\Debug\NewFirst.csproj.CopyComplete
+F:\ITI-Course\EF\NewFirst\obj\Debug\NewFirst.exe
+F:\ITI-Course\EF\NewFirst\obj\Debug\NewFirst.pdb
